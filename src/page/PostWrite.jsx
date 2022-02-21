@@ -69,6 +69,7 @@ const Wrap = styled.div`
   height: 92vh;
   margin: auto;
   border: 1px solid #d4d4d4;
+  box-sizing: border-box;
 `;
 
 const Head = styled.div`
@@ -110,7 +111,7 @@ const Footer = styled.div`
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  height: 70px;
+  height: 8.6vh;
   padding: 0 10px;
   box-shadow: 0 0 5px #dbdbdb;
 `;
