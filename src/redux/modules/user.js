@@ -53,10 +53,11 @@ const loginDB = (email, pwd) => {
                 email: email,
                 password: pwd,
             })
-            
-
+            localStorage.setItem('token', login.data.token);
+            alert('로그인 되었습니다!');
+            dispatch(setUser(login.data));
         } catch(err){
-
+            alert('아이디와 비밀번호를 다시 확인해주세요!')
         }
     }  
 }

@@ -1,0 +1,49 @@
+/* .editbtn{
+    border:none;
+    background-color:white;
+    color:grey;
+}
+
+.editbtn:hover{
+ color:black;
+ width:100px;
+} */
+
+.nickname {
+  margin-left: 2%;
+}
+
+.date {
+  margin-left: 2%;
+}
+
+.heartcontainer {
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 1px solid #f1f3f5;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 10px auto;
+}
+.heartcontainer:hover {
+  border: 1px solid black;
+}
+
+.heartIcon {
+  display: block;
+  margin: 10px auto;
+  align-items: center;
+}
+
+.check {
+  display: flex;
+  justify-content: space-between;
+}
+
+.img{
+    width:785;
+}
+
+/* .wrap{
+    padding-left:calc(50%-20rem);
+} */
