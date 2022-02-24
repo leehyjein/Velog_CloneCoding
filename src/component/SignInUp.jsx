@@ -3,14 +3,34 @@ import styled from 'styled-components';
 import { Button } from '../elements';
 import { emailCheck, pwdCheck } from '../shared/common';
 import _ from 'lodash';
+import { useDispatch } from 'react-redux';
+import { actionCreators as userActions } from '../redux/modules/user';
 
 const SignInUp = (props) => {
+
+    const dispatch = useDispatch();
 
     const [sign_up, setSignUp] = React.useState(false)
     const [email, setEmail ] = React.useState('')
     const [pwd, setPwd ] = React.useState('')
 
     const target_in = React.useRef([]);
+
+    const token = localStorage.getItem('token');
+
+    const login = () => {
+        if(target_in.current[0].value === '' || target_in.current[1].value === ''){
+            alert('입력하지 않은 칸이 있습니다!');
+            return;
+        }
+        dispatch(userActions.loginDB(target_in.current[0].value, target_in.current[1].value)).then(
+            (res)=>{
+                if(res === 'ok'){
+                    alert('로그인 되었습니다!');
+                    props.close();
+                }
+            })
+    }
 
     const target_up = React.useRef([]);
 
@@ -48,6 +68,14 @@ const SignInUp = (props) => {
             arr.push(target_up.current[i].value);
         }
 
+        dispatch(userActions.signupDB(email, pwd, arr[1], arr[2], arr[3])).then(
+            (res) => {
+                if(res === 'OK'){
+                    setSignUp(false);
+                }
+            }
+        )
+
         console.log(
             `email: ${email}
             pwd: ${pwd}
@@ -79,7 +107,7 @@ const SignInUp = (props) => {
                                     <div className='login_form'>
                                         <input type="email" placeholder='이메일을 입력하세요.' ref={e => target_in.current[0] = e}/>
                                         <input type="password" placeholder='비밀번호를 입력하세요.' ref={e => target_in.current[1] = e}/>
-                                        <Button greenB text='로그인' _onClick={()=>{console.log(target_in.current)}}/>
+                                        <Button greenB text='로그인' _onClick={login}/>
                                     </div>
                                 )}
                                 {sign_up && (

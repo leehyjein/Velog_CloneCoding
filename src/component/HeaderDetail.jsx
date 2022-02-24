@@ -1,82 +1,59 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from 'react-redux';
 
 const Head=(props)=> {
 
     return(
         <React.Fragment>
-              <Wrap>
-          <IconContainer>
-            <LogoContainer>
-              <Logo>
-                <svg
-                  width="29"
-                  height="29"
-                  viewBox="0 0 192 192"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M24 0H168C181.255 0 192 10.7451 192 24V168C192 181.255 181.255 192 168 192H24C10.7451 192 0 181.255 0 168V24C0 10.7451 10.7451 0 24 0ZM49 57.9199V65.48H67L80.6799 142.52L98.5 141.26C116.02 119.06 127.84 102.44 133.96 91.3999C140.2 80.24 143.32 70.9399 143.32 63.5C143.32 59.0601 142 55.7 139.36 53.4199C136.84 51.1399 133.66 50 129.82 50C122.62 50 116.62 53.0601 111.82 59.1799C116.5 62.3 119.68 64.8799 121.36 66.9199C123.16 68.8401 124.06 71.4199 124.06 74.6599C124.06 80.0601 122.44 86.1799 119.2 93.02C116.08 99.8601 112.66 105.92 108.94 111.2C106.54 114.56 103.48 118.7 99.76 123.62L88.0601 57.2C87.1001 52.3999 84.1001 50 79.0601 50C76.78 50 72.3999 50.96 65.9199 52.8799C59.4399 54.6799 53.8 56.3601 49 57.9199Z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-              </Logo>
-              <Userlogo>
-                <a
-                  style={{ textDecoration: "none", color: "black" }}
-                  class="user-logo"
-                  href="/@chickenrun"
-                >
-                  vert
-                </a>
-              </Userlogo>
-            </LogoContainer>
-            <ProfileContainer>
-              <FirstIconContainer>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M4.069 13h-4.069v-2h4.069c-.041.328-.069.661-.069 1s.028.672.069 1zm3.034-7.312l-2.881-2.881-1.414 1.414 2.881 2.881c.411-.529.885-1.003 1.414-1.414zm11.209 1.414l2.881-2.881-1.414-1.414-2.881 2.881c.528.411 1.002.886 1.414 1.414zm-6.312-3.102c.339 0 .672.028 1 .069v-4.069h-2v4.069c.328-.041.661-.069 1-.069zm0 16c-.339 0-.672-.028-1-.069v4.069h2v-4.069c-.328.041-.661.069-1 .069zm7.931-9c.041.328.069.661.069 1s-.028.672-.069 1h4.069v-2h-4.069zm-3.033 7.312l2.88 2.88 1.415-1.414-2.88-2.88c-.412.528-.886 1.002-1.415 1.414zm-11.21-1.415l-2.88 2.88 1.414 1.414 2.88-2.88c-.528-.411-1.003-.885-1.414-1.414zm6.312-10.897c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6z"></path>
-                </svg>
-              </FirstIconContainer>
-              <SecondIconContainer>
-                <svg width="17" height="17" viewBox="0 0 17 17">
-                  <path
-                    fill-rule="evenodd"
-                    d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z"
-                    clip-rule="evenodd"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-              </SecondIconContainer>
-              <PostBtnContainer>
-                <PostBtn onClick={() => {}}>새 글 작성</PostBtn>
-              </PostBtnContainer>
-              <Profile>
-                <img src="https://media.vlpt.us/images/chickenrun/profile/c5b45986-7369-423b-bfa5-f6f96704370e/coding baby.jpg?w=120" />
-              </Profile>
-            </ProfileContainer>
-          </IconContainer>
-        </Wrap>
+          <Wrap>
+            <IconContainer>
+              <LogoContainer>
+                <Logo>
+                  <svg width="29" height="29" viewBox="0 0 192 192" fill="currentColor">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M24 0H168C181.255 0 192 10.7451 192 24V168C192 181.255 181.255 192 168 192H24C10.7451 192 0 181.255 0 168V24C0 10.7451 10.7451 0 24 0ZM49 57.9199V65.48H67L80.6799 142.52L98.5 141.26C116.02 119.06 127.84 102.44 133.96 91.3999C140.2 80.24 143.32 70.9399 143.32 63.5C143.32 59.0601 142 55.7 139.36 53.4199C136.84 51.1399 133.66 50 129.82 50C122.62 50 116.62 53.0601 111.82 59.1799C116.5 62.3 119.68 64.8799 121.36 66.9199C123.16 68.8401 124.06 71.4199 124.06 74.6599C124.06 80.0601 122.44 86.1799 119.2 93.02C116.08 99.8601 112.66 105.92 108.94 111.2C106.54 114.56 103.48 118.7 99.76 123.62L88.0601 57.2C87.1001 52.3999 84.1001 50 79.0601 50C76.78 50 72.3999 50.96 65.9199 52.8799C59.4399 54.6799 53.8 56.3601 49 57.9199Z" fill="currentColor"/>
+                  </svg>
+                </Logo>
+                <Userlogo>
+                  <a style={{ textDecoration: "none", color: "black" }} className="user-logo" href="/">
+                    {props.userId}
+                  </a>
+                </Userlogo>
+              </LogoContainer>
+              <ProfileContainer>
+                <FirstIconContainer>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4.069 13h-4.069v-2h4.069c-.041.328-.069.661-.069 1s.028.672.069 1zm3.034-7.312l-2.881-2.881-1.414 1.414 2.881 2.881c.411-.529.885-1.003 1.414-1.414zm11.209 1.414l2.881-2.881-1.414-1.414-2.881 2.881c.528.411 1.002.886 1.414 1.414zm-6.312-3.102c.339 0 .672.028 1 .069v-4.069h-2v4.069c.328-.041.661-.069 1-.069zm0 16c-.339 0-.672-.028-1-.069v4.069h2v-4.069c-.328.041-.661.069-1 .069zm7.931-9c.041.328.069.661.069 1s-.028.672-.069 1h4.069v-2h-4.069zm-3.033 7.312l2.88 2.88 1.415-1.414-2.88-2.88c-.412.528-.886 1.002-1.415 1.414zm-11.21-1.415l-2.88 2.88 1.414 1.414 2.88-2.88c-.528-.411-1.003-.885-1.414-1.414zm6.312-10.897c-3.314 0-6 2.686-6 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6z"></path>
+                  </svg>
+                </FirstIconContainer>
+                <SecondIconContainer>
+                  <svg width="17" height="17" viewBox="0 0 17 17">
+                    <path fillRule="evenodd" d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z" clipRule="evenodd" fill="currentColor"/>
+                  </svg>
+                </SecondIconContainer>
+                <PostBtnContainer>
+                  <PostBtn onClick={() => {}}>새 글 작성</PostBtn>
+                </PostBtnContainer>
+                <Profile>
+                  <img src="https://media.vlpt.us/images/chickenrun/profile/c5b45986-7369-423b-bfa5-f6f96704370e/coding baby.jpg?w=120" alt='user-profile'/>
+                </Profile>
+              </ProfileContainer>
+            </IconContainer>
+          </Wrap>
         </React.Fragment>
     );
 }
 
 
 const Wrap= styled.div`
-  width: 100vw;
+  width: 100%;
   height: 4rem;
   display: block;
   box-sizing: inherit;
 `;
 
 const IconContainer = styled.div`
-  width: 1376px;
+  width: 1728px;
   height: 100%;
   display: flex;
   margin-left: auto;
@@ -85,6 +62,11 @@ const IconContainer = styled.div`
   align-items: center;
   -webkit-box-pack: justify;
   justify-content: space-between;
+
+  @media (max-width: 1919px){
+    width: 1376px;
+  }
+
 `;
 
 const LogoContainer = styled.div`

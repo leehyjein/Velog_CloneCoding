@@ -23,6 +23,7 @@ const Grid = (props) => {
     _onClick,
     overflow,
     radius,
+    minHeight
   } = props;
 
   const styles = {
@@ -44,6 +45,7 @@ const Grid = (props) => {
     _onClick,
     overflow,
     radius,
+    minHeight
   };
   return (
     <>
@@ -75,6 +77,7 @@ Grid.defaultProps = {
   overflow: null,
   radius: null,
   self: null,
+  minHeight: null,
 };
 
 const GridBox = styled.div`
@@ -93,6 +96,7 @@ const GridBox = styled.div`
   ${(props) => (props.overflow ? `overflow: ${props.overflow};` : "")}
   ${(props) => (props.radius ? `border-radius: ${props.radius};` : "")}
   ${(props) => (props.self ? `justify-self: ${props.self};` : "")}
+  ${(props) => (props.minHeight ? `min-height: ${props.minHeight};` : "")}
   word-break: normal;
   word-wrap: break-word;
 
