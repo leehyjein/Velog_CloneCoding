@@ -78,7 +78,7 @@ const Bar = styled.div`
 
   &.roll{
     position: fixed;
-    left: 215px;
+    left: calc(50% - 497px);
     top: 12.8125rem;
   }
 
