@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+# 🎈Velog Clone Coding
+![318382a280e7300f951cdbff978bbd9bea98e5603b4caf03a212b233026d2225f3b5112c156f27c802d53452ade4f05448444e55076d1f24d23133cdf92b23cac819befba5c056ad7cb306fa66a0e0b3ee45f0183517405c5360d9238b3232a4](https://user-images.githubusercontent.com/80885540/155510423-cead68e7-8ea8-468f-bbfc-22bcf720b120.png)
+Front-End는 React, Back-End는 Spring을 사용해서
+개발자들을 위한 블로그 서비스 Velog를 클론 코딩했습니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 📃상세 페이지
+![1](https://user-images.githubusercontent.com/80885540/155523943-4a001f91-37e5-4f84-8fd3-5e86459dab5a.PNG)
 
-## Available Scripts
+![2](https://user-images.githubusercontent.com/80885540/155523955-9715ddd3-e335-4338-837f-ab3dc78fe4c7.PNG)
 
-In the project directory, you can run:
+![3](https://user-images.githubusercontent.com/80885540/155523975-7d8f0ba9-e3ef-45dd-9c1f-2f39980dc15d.PNG)
 
-### `yarn start`
+![7](https://user-images.githubusercontent.com/80885540/155526771-d69c4e09-29ba-4336-8b69-936a713cc85c.PNG)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![8](https://user-images.githubusercontent.com/80885540/155526786-94e8bc6b-1501-4833-a452-262e01873b28.PNG)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![9](https://user-images.githubusercontent.com/80885540/155526793-2457fa85-6906-4294-881f-3a882e535b40.PNG)
 
-### `yarn test`
+# ⏳팀 프로젝트 기간
+* 2022.02.17~2022.02.24(7일)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# 💻웹사이트
+http://velog.site.s3-website.ap-northeast-2.amazonaws.com/
 
-### `yarn build`
+# 🎬실행화면
+유튜브 링크: https://youtu.be/CXxDmG3a0AY
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 🌎API
+https://www.notion.so/_Velog-8-a608eb829fbc4bb5a36bb43247a405ad
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# 🙋팀원
+* Front-end(React):정현수, 이혜진
+* Back-end(Spring): 정선모, 이용만, 박정희
