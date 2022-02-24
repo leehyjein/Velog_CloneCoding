@@ -38,7 +38,6 @@ const changeLikeDB = (postId) => {
             dispatch(postActions.editLikeCnt(like.data.likesNum));
             dispatch(getLike(postId, like.data.result));
         }catch(err){
-            alert('좋아요에 실패했습니다!');
             console.log(err);
         }
     }
