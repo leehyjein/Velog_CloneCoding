@@ -6,7 +6,7 @@ const Comment = (props) => {
     <React.Fragment>
       <CommentContainer>
         <CommentNumber>
-          <h4>0개의 댓글</h4>
+          <h4>{props.post.commentCount}개의 댓글</h4>
         </CommentNumber>
           <Input placeholder="댓글을 작성하세요" />  
           <Button onClick={() => {}}>댓글 작성</Button>
@@ -53,7 +53,7 @@ const Input = styled.input`
   color: #212529;
   line-height: 1.75;
   word-break: break-all;
-  &: placeholder {
+  &::placeholder {
     color: #adb5bd;
   }
 `;

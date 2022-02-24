@@ -8,19 +8,24 @@ const Tag =(props)=> {
             <TagContainer>
             <Text>
             <a 
+            onClick={props._onClick}
             style={{ textDecoration: "none", color: "#12b886" }} 
-            class="sc-Galmp dVuziE" href="/tags/프로그래머스">프로그래머스</a>
+            href="/">{props.text}</a>
             </Text>
         </TagContainer>
         </React.Fragment>
     );
 }
 
+Tag.defaultProps = {
+  text: '프로그래머스',
+  _onClick: ()=>{},
+}
 
 const TagContainer=styled.div`
-  width:785px;
+  width: max-content;
   height:2rem;
-  margin: 0.875rem auto;
+  margin: 0 0.75rem 0.75rem 0;
     min-height: 0.875rem;
   display:flex;
 `;

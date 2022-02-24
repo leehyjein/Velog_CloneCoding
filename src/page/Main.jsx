@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Card from '../component/Card';
 import { Button, Grid } from '../elements';
 import Header from './../component/Header';
+import { actionCreators as postActions } from '../redux/modules/post';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Main = (props) => {
 
-    const [filter, setFilter] = React.useState('trending')
+    const [filter, setFilter] = React.useState('trending');
+
+    const dispatch = useDispatch();
+    const post_list_like = useSelector(state => state.post.list_like);
+
+    useEffect(()=>{
+        dispatch(postActions.setPostLikeDB());
+    },[dispatch])
+
+    const post_list_time = useSelector(state => state.post.list_time);
 
     return (
         <>
@@ -32,21 +43,13 @@ const Main = (props) => {
                 <div>
                     <main>
                         <div>
-                            <Card thumbnailImageUrl=''/>
-                            <Card/>
-                            <Card/>
-                            <Card/>
-                            <Card/>
-                            <Card thumbnailImageUrl='https://blog.kakaocdn.net/dn/1GjTI/btqDblsbL2r/GrpSdskpK7Lh2QjykAOlVK/img.jpg'/>
-                            <Card/>
-                            <Card/>
-                            <Card/>
-                            <Card/>
-                            <Card/>
-                            <Card/>
-                            <Card/>
-                            <Card/>
-                            <Card/>
+                            {
+                                post_list_like?.map((a,i)=>{
+                                    return(
+                                        <Card key={i} {...a}/>
+                                    )
+                                })
+                            }
                         </div>
                     </main>
                 </div>
@@ -99,6 +102,7 @@ const HeaderBottomWrap = styled.div`
 const MainWrap = styled.div`
     width: 1728px;
     margin: auto;
+    min-height: calc(100vh - 5.5rem);
 
     @media (max-width: 1919px){
             width: 1376px;

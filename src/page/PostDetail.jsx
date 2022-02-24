@@ -3,109 +3,96 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import "./PostDetail.css";
 import LikeBar from './../component/LikeBar';
-import Head from "../component/Head";
 import Tag from "../component/Tag";
 import Comment from "../component/Comment";
-import "@toast-ui/editor/dist/toastui-editor-viewer.css";
+import PostView from "../component/PostView";
+import { useParams } from "react-router-dom";
+import { actionCreators as postActions } from "../redux/modules/post";
+import { dateView } from "../shared/time";
+import Header from './../component/Header';
+import { history } from "../redux/configureStore";
 
-// import { actionCreators as postActions } from "../redux/modules/post";
-
-// const PostDetail = (props) => {
-//   const dispatch = useDispatch();
-//   const post_list = useSelector((state) => state.post.list);
-
-//   const { username } = props;
-
-//   React.useEffect(() => {
-//     if (!post_list[username]) {
-//       dispatch(postActions.getPostFB(username));
-//     }
-//   }, []);
-
-//   if (!post_list[username] || !username) {
-//     return null;
-//   }
-
-//   PostDetail.defaultProps = {
-//     post_id: null,
-//   };
-
-//   export default PostDetail;
 
   const PostDetail = (props) => {
+    const dispatch = useDispatch();
+    const postId = +(useParams().postId);
+
+    React.useEffect(()=>{
+      dispatch(postActions.setOnePostDB(postId))
+    },[])
+    
+    const post = useSelector(state => state.post.post_detail);
+    const user_info = useSelector(state => state.user.user);
+    console.log(post);
+    
+    const deletePost = () => {
+      const confirm = window.confirm('정말 포스트를 삭제하시겠습니까?')
+      if(confirm){
+        dispatch(postActions.deletePostDB(postId));
+      }
+    }
+
+
+    
     return (
       <React.Fragment>
         <Wrap>
-          <Head />
+          <Header detail {...post}/>
           <TitleContainer>
-            <TitleWrapper>
-              <Title>
-                <h1>타이틀</h1>
-              </Title>
-            </TitleWrapper>
-          </TitleContainer>
-          <UserIdContainer>
-            <Information>
-              <div className="nickname">
-                <span>
-                  <a
-                    style={{ textDecoration: "none", color: "black" }}
-                    href="/@chickenrun"
-                  >
-                    chickenrun
-                  </a>
-                </span>
-              </div>
-              <div className="date">
-                <span>2022년 1월 18일</span>
-              </div>
-              <BtnContainer>
-                <EditBtn onClick={() => {}}>수정</EditBtn>
-                <DeleteBtn onClick={() => {}}>삭제</DeleteBtn>
-              </BtnContainer>
-            </Information>
-          </UserIdContainer>
-          <Tag />
-          <LikeBar />
-          <SeriesBox>
-            <Series>
-              <a
-                style={{ textDecoration: "none", color: "black" }}
-                href="/@chickenrun/series/Algorithm-Archive"
-              >
-                Algorithm Archive
-              </a>
-              <Check>
-                <div className="check">
-                  <svg
-                    color="#12b886"
-                    width="32"
-                    height="48"
-                    fill="currentColor"
-                    viewBox="0 0 32 48"
-                    class="series-corner-image"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M32 0H0v48h.163l16-16L32 47.836V0z"
-                    ></path>
-                  </svg>
+            <Title>
+              <h1>{post?.title}</h1>
+            </Title>
+            <UserIdContainer>
+              <Information>
+                <div className="nickname">
+                  <span>
+                    <a style={{ textDecoration: "none", color: "black" }} href="/" onClick={(e)=>{e.preventDefault()}}>
+                      {post?.userId}
+                    </a>
+                  </span>
                 </div>
-              </Check>
-            </Series>
-          </SeriesBox>
+                <span className="separator">·</span>
+                <div className="date">
+                  <span>{dateView(post?.createdAt)}</span>
+                </div>
+                {(user_info?.userIde === post?.userId) && (
+                  <BtnContainer>
+                    <EditBtn onClick={() => {history.push(`/Postwrite/${postId}`)}}>수정</EditBtn>
+                    <DeleteBtn onClick={deletePost}>삭제</DeleteBtn>
+                  </BtnContainer>
+                )}
+              </Information>
+            </UserIdContainer>
+            <div className="tag-box">
+              <Tag/>
+              <Tag text='알고리즘'/>
+              <Tag text='항해99 5기'/>  
+            </div>
+            <LikeBar count={post?.likeCount} postId={postId}/>
+            <SeriesBox>
+              <Series>
+                  {post?.contentSummary}
+              </Series>
+                <Check>
+                  <div className="check">
+                    <svg color="#12b886" width="32" height="48" fill="currentColor" viewBox="0 0 32 48" className="series-corner-image">
+                      <path fill="currentColor" d="M32 0H0v48h.163l16-16L32 47.836V0z"/>
+                    </svg>
+                  </div>
+                </Check>
+            </SeriesBox>
+            <div className="thumbnail">
+              {post?.thumbnailImageUrl && (
+                <img src={post?.thumbnailImageUrl} alt="thumbnail"/>
+              )}
+            </div>
+          </TitleContainer>
           <ContentBox>
-            <Img>
-              <img
-                className="img"
-                src="https://media.vlpt.us/images/chickenrun/post/e00188bb-02a2-4074-87f4-a1e290ab40b7/%EC%98%88%EC%8B%9C.PNG"
-              />
-            </Img>
-            <Viewer></Viewer>
+            <PostView postId={postId}/>
           </ContentBox>
           <ProfileBox>
             <ProfileContainer
-              src="https://media.vlpt.us/images/chickenrun/profile/c5b45986-7369-423b-bfa5-f6f96704370e/coding baby.jpg?w=240"
+              src={`/static/${post?.profileNum}.jpg`}
               alt="profile"
             />
             <UserInfo>
@@ -114,63 +101,56 @@ import "@toast-ui/editor/dist/toastui-editor-viewer.css";
                   style={{ textDecoration: "none", color: "black" }}
                   href="/@chickenrun"
                 >
-                  만분의 일
+                  {post?.nickname}
                 </a>
               </Name>
-              <Description>1/10000 이 1이 될 때 까지</Description>
+              <Description>{post?.introduce}</Description>
             </UserInfo>
           </ProfileBox>
-          <Line />
-          <Comment />
+          <Line/>
+          <Comment post={post}/>
         </Wrap>
       </React.Fragment>
     );
   };
 
 
-// PostItem.defaultProps = {
-//     user_profile: "",
-//     user_name: "hj",
-//     user_id: "",
-//     post_id: 1,
-//     contents: "귀여운 고양이네요!",
-//     insert_dt: "2022-02-06 19:00:00",
-//   };
-
 const Wrap = styled.div`
-  width: 100vw;
-  height: 100vh;
-  overflow-y: initial;
-  //   background-color: #f8f9fa;
+  width: 100%;
+  
 `;
 
 const TitleContainer = styled.div`
-  width: 785px;
-  margin-top: 3.4rem;
+  width: 768px;
+  margin-top: 5.5rem;
   margin-left: auto;
   margin-right: auto;
-  height: 18vh;
   display: block;
   box-sizing: inherit;
-`;
-const TitleWrapper = styled.div`
-  width: 785px;
-  margin-top: 2rem;
-  margin-left: auto;
-  margin-right: auto;
-  height: 18vh;
-  display: block;
-  box-sizing: inherit;
+  position: relative;
+
+  .tag-box{
+    margin-top: 0.875rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .thumbnail{
+    width: 100%;
+    img{
+      object-fit: contain;
+      max-width: 100%;
+      max-height: 100vh;
+      width: auto;
+      margin: 2rem auto 0px;
+      height: auto;
+      display: block;
+    }
+  }
 `;
 
 const Title = styled.div`
-  display: flex;
-  position: absolute;
-  max-width: 1024px;
-  width: 100vw;
-  height: 18vh;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  width: 100%;
   margin-top: 0px;
   margin-bottom: 2rem;
   font-size: 1.5rem;
@@ -178,11 +158,23 @@ const Title = styled.div`
   letter-spacing: -0.004em;
   font-weight: 800;
   box-sizing: inherit;
+
+    h1{
+      margin: 0;
+      font-size: 3rem;
+      line-height: 1.5;
+      letter-spacing: -0.004em;
+      margin-top: 0px;
+      font-weight: 800;
+      color: #212529;
+      margin-bottom: 2rem;
+      word-break: keep-all;
+    }
 `;
 
 const UserIdContainer = styled.div`
   display: flex;
-  width: 785px;
+  width: 100%;
   // max-width: 1024px;
   height: 5%;
   -webkit-box-pack: end;
@@ -198,6 +190,23 @@ const Information = styled.div`
   position: relative;
   width: 100%;
   align-items: center;
+
+  .nickname {
+    font-weight: bold;
+    font-size: 1rem;
+
+  }
+  .separator{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    color: #495057;
+  }
+
+  .date {
+    font-size: 1rem;
+    color: #495057;
+  }
 `;
 
 const BtnContainer = styled.div`
@@ -239,50 +248,38 @@ const DeleteBtn = styled.div`
 `;
 
 const SeriesBox = styled.div`
-  width: 785px;
-  background-color: #f8f9fa;
-  height: 9.5rem;
-  margin-left:auto;
-  margin-right:auto;
+    margin-top: 1.3rem;
+    padding: 2rem 1.5rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: rgb(0 0 0 / 6%) 0px 0px 4px 0px;
+    position: relative;
 `;
 
 const Series = styled.div`
-  display: flex;
   text-decoration: none;
-  color: inherit;
-  margin-left: 5px;
+  color: #495057;
   font-weight: bold;
   font-size: 1.5rem;
-  line-height: 80px;
-  &:hover {
-    text-decoration: underline;
-  }
+  height: 104px;
+  word-break: break-word;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const Check = styled.div`
-  justify-content: space-between;
-  position: flex;
-  margin-left: 65%;
+    position: absolute;
+    right: 1.5rem;
+    top: 0px;
 `;
 
 const ContentBox = styled.div`
-  width: 785px;
-  objectfit: cover;
+  width: 768px;
+  margin: 5rem auto 0px;
   overflow-wrap: break-word;
   height: auto;
   margin: 3rem auto;
   box-sizing: inherit;
-`;
-const Img = styled.div`
-  width: 785px;
-  height: auto;
-  objectfit: cover;
-`;
-
-const Viewer = styled.div`
-  width: 785px;
-  height: auto;
-  border: 1px none grey;
 `;
 
 const ProfileBox = styled.div`

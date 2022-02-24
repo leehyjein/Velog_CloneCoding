@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { dateView } from './../shared/time';
+import { history } from '../redux/configureStore';
 
 const Card = (props) => {
+    
     return (
         <>
             <CardWrap thumbnailImageUrl={props.thumbnailImageUrl}>
-                <div/>
+                <div onClick={()=>{history.push(`/PostDetail/${props.boardId}`); window.scrollTo(0,0)}}/>
                 <div>
-                    <div className='desc_wrapper'>
+                    <div className='desc_wrapper' onClick={()=>{history.push(`/PostDetail/${props.boardId}`); window.scrollTo(0,0)}}>
                         <h4>{props.title}</h4>
                         <div>
                             <p>{props.contentSummary}</p>
@@ -19,8 +21,8 @@ const Card = (props) => {
                     </div>
                 </div>
                 <div>
-                    <div className='user_info'>
-                        <img src={props.profileNum} alt="유저 프로필 이미지" />
+                    <div className='user_info' onClick={()=>{history.push(`/PostDetail/${props.boardId}`); window.scrollTo(0,0)}}>
+                        <img src={`/static/${props.profileNum}.jpg`} alt="유저 프로필 이미지" />
                         <span>by <b>{props.userId}</b></span>
                     </div>
                     <div className='likes'>
@@ -42,7 +44,7 @@ Card.defaultProps = {
     createdAt: '2020-02-19 01:00:00',
     commentCount: 5,
     userId: 'ricky0813',
-    profileNum: 'https://static.spartacodingclub.kr/043a96e34c19/static/v5/images/target1-min.png?t=1633489495',
+    profileNum: 5,
     likeCount: 10,
 
 }
