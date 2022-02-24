@@ -284,7 +284,7 @@ export default handleActions({
     }),
     [EDIT_LIKE_CNT]:(state, action) => produce(state, (draft)=>{
         draft.post_detail.likeCount = action.payload.like_cnt;
-    }),
+    })
 },initialState)
 
 const actionCreators = {

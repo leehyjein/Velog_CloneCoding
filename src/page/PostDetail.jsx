@@ -17,8 +17,20 @@ import { history } from "../redux/configureStore";
     const dispatch = useDispatch();
     const postId = +(useParams().postId);
 
+    const likeRef = React.useRef();
+
+    const [roll, setRoll] = React.useState(false);
+
     React.useEffect(()=>{
       dispatch(postActions.setOnePostDB(postId))
+
+      window.addEventListener('scroll', ()=>{
+          if(window.scrollY > 106){
+            setRoll(true)
+          } else if(window.scrollY <= 106){
+            setRoll(false)
+          }
+      })
     },[])
     
     const post = useSelector(state => state.post.post_detail);
@@ -68,7 +80,7 @@ import { history } from "../redux/configureStore";
               <Tag text='알고리즘'/>
               <Tag text='항해99 5기'/>  
             </div>
-            <LikeBar count={post?.likeCount} postId={postId}/>
+            <LikeBar _ref={likeRef} count={post?.likeCount} postId={postId} _class={roll ? 'roll' : ''}/>
             <SeriesBox>
               <Series>
                   {post?.contentSummary}

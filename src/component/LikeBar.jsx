@@ -24,12 +24,15 @@ const LikeBar = (props) => {
       return;
     }
     dispatch(likeActions.changeLikeDB(props.postId));
+    
   }
+
+  
 
   return (
     <React.Fragment>
-      <div className="wrap">
-      <Bar>
+      <div>
+      <Bar className={props._class} ref={props._ref}>
         <div className="heartcontainer" onClick={pushLike}>
           <svg className="heartIcon" width="24" height="24" viewBox="0 0 24 24">
             <path
@@ -38,7 +41,7 @@ const LikeBar = (props) => {
             ></path>
           </svg>
           {like_did && (
-            <div className="heart-on" onClick={pushLike}>
+            <div className="heart-on"  onClick={pushLike}>
               <svg className="heartIcon-on" width="24" height="24" viewBox="0 0 24 24">
                 <path
                   fill="currentColor"
@@ -72,6 +75,13 @@ const Bar = styled.div`
   -webkit-box-align: center;
   box-sizing: inherit;
   text-align:center;
+
+  &.roll{
+    position: fixed;
+    left: 215px;
+    top: 12.8125rem;
+  }
+
   p{
     margin-top: -0.3rem;
     color: #495057;
@@ -114,6 +124,27 @@ const Bar = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+
+      animation: 500ms ease 0ms 1 normal forwards running liked;
+
+      @keyframes liked {
+          0%{
+              transform: scale(1);
+          }
+          25%{
+            transform: scale(1.1);
+          }
+          50%{
+            transform: scale(1);
+          }
+          75%{
+            transform: scale(1.2);
+          }
+          100%{
+              transform: scale(1);
+          }
+      }
+
 
       &:hover{
         background-color: #38d9a9;
